@@ -19,19 +19,21 @@ namespace Live2D.Cubism.Framework.Raycasting
     /// </summary>
     public sealed class CubismRaycaster : MonoBehaviour
     {
-        /// <summary>
-        /// <see cref="CubismRenderer"/>s with <see cref="CubismRaycastable"/>s attached.
-        /// </summary>
-        private CubismRenderer[] Raycastables { get; set; }
+
+        /* 
+            Raycastables
+            RaycastablePrecisions
+            ---
+            存储了一个角色中, 绑定了 CubismRaycastable 的 面片 的数据 (一一对应的, 可用同一个 idx 在这两个 array中遍历)
+        */
+        private CubismRenderer[] Raycastables { get; set; } // 绑定了 CubismRaycastable 的 CubismRenderer 组件
+        private CubismRaycastablePrecision[] RaycastablePrecisions { get; set; } // 绑定了 CubismRaycastable 的 CubismRaycastablePrecision 组件
+
+
 
         /// <summary>
-        /// <see cref="CubismRaycastablePrecision"/>s with <see cref="CubismRaycastable"/>s attached.??????????????
-        /// </summary>
-        private CubismRaycastablePrecision[] RaycastablePrecisions { get; set; }
-
-
-        /// <summary>
-        /// Refreshes the controller. Call this method after adding and/or removing <see cref="CubismRaycastable"/>.
+        ///     Refreshes the controller. Call this method after adding and/or removing <see cref="CubismRaycastable"/>.
+        ///     刷新 Raycastables, RaycastablePrecisions 两个容器数据
         /// </summary>
         private void Refresh()
         {
@@ -101,12 +103,15 @@ namespace Live2D.Cubism.Framework.Raycasting
         /// <returns>The numbers of drawables had hit</returns>
         public int Raycast(Ray ray, CubismRaycastHit[] result, float maximumDistance = Mathf.Infinity)
         {
+
+            // 通常 面片都位于 xy平面, 相机朝向 z+ 方向
+
             // Cast ray against model plane.
             var intersectionInWorldSpace = ray.origin + ray.direction * (ray.direction.z / ray.origin.z);
             var intersectionInLocalSpace = transform.InverseTransformPoint(intersectionInWorldSpace);
-
-
             intersectionInLocalSpace.z = 0;
+
+            //print("WorldSpace:" + intersectionInWorldSpace.ToString() + "; \n LocalSpace:" + intersectionInLocalSpace.ToString() );   // tpr debug;
 
 
             var distance = intersectionInWorldSpace.magnitude;
