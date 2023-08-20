@@ -96,6 +96,25 @@ The [.mtn] in Cubism 2.1 has been changed to [.motion3.json]. (extension change)
 
 
 # ------------------------------------------- #
+#              运行时加载
+# ------------------------------------------- #
+https://docs.live2d.com/en/cubism-sdk-tutorials/initializemodel/
+
+若直接照着例子做, 会发现加载出来的 prefab 根节点上好像少了几个 组件; 这是因为它使用了 model3Json.ToModel(); 参数默认为 false
+将参数改为 true 后, 这些组件就会回来;
+问题来了:
+是否要这些组件呢 ?
+
+# 官方这个加载方式, 就是在 场景里动态生成一个 prefab 里的所有 go 和 组件;
+
+# 似乎我们 异步加载 prefab 也是管用的...
+
+
+
+
+
+
+# ------------------------------------------- #
 #                      杂
 # ------------------------------------------- #
 
@@ -114,14 +133,36 @@ https://docs.live2d.com/en/cubism-sdk-tutorials/sortrendering/
 
 
 
+# ------------------------------ #
+#  如何 点击角色
+
+官方案例: Raycasting
+
+
+
+# ------------------------------ #
+
+# 如何手操作 参数
+    https://docs.live2d.com/en/cubism-sdk-tutorials/about-parameterupdating-of-model/
+
+    查看:
+        ParameterLateUpdate.cs 中的实现
+
+    ---
+    缺陷:
+        CubismParameter.Id  不够直观, 还得配合 xxx.cdi3.json 文件来找到它的 中文名;     
+        ---
+        这意味着, 在代码中要读取这个表自己建立一个映射表;
+        ==
+        目前规则, 
+            大部分参数的 Id 都继续沿用 程序自动生成的名字,比如 "Param397";
+            需要程序改写的参数, 在人为命名;
 
 
 
 
 
-
-
-
+#
 
 
 

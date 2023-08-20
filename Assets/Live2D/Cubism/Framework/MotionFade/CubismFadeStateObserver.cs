@@ -132,6 +132,9 @@ namespace Live2D.Cubism.Framework.MotionFade
         /// <param name="controller">Animation controller playable.</param>
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
         {
+
+            Debug.Log("koko OnStateEnter");
+
             var fadeController = animator.gameObject.GetComponent<CubismFadeController>();
 
             // Fail silently...
@@ -141,6 +144,15 @@ namespace Live2D.Cubism.Framework.MotionFade
             }
 
             _cubismFadeMotionList = fadeController.CubismFadeMotionList;
+
+            if( _cubismFadeMotionList == null ) 
+            {
+                Debug.Log("koko _cubismFadeMotionList null");
+            }
+            else 
+            {
+                Debug.Log("koko _cubismFadeMotionList not null");
+            }
 
             _layerIndex = layerIndex;
             _layerWeight = (_layerIndex == 0)

@@ -77,7 +77,7 @@ namespace Live2D.Cubism.Core
 
 
         /// <summary>
-        /// Copy of Id.
+        /// Copy of Id.    此值一般和 prefab.Parameters 节点下的各个 子节点的名字 相同;
         /// </summary>
         public string Id
         {

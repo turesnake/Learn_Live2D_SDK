@@ -75,8 +75,13 @@ namespace Live2D.Cubism.Framework.Json
             return LoadAtPath(assetPath, BuiltinLoadAssetAtPath);
         }
 
+
+
         /// <summary>
-        /// Loads a model.json asset.
+        ///     Loads a model.json asset.
+        ///     本函数仅仅是解析了一个 .model3.json 文件, 把 json 数据整理到一个 CubismModel3Json 实例中;
+        /// 
+        ///   
         /// </summary>
         /// <param name="assetPath">The path to the asset.</param>
         /// <param name="loadAssetAtPath">Handler for loading assets.</param>
@@ -104,6 +109,10 @@ namespace Live2D.Cubism.Framework.Json
 
             // Set motion references.
             var value = CubismJsonParser.ParseFromString(modelJsonAsset);
+
+
+            // Motions 就是 美术制作的 动画
+
 
             // Return early if there is no references.
             if (!value.Get("FileReferences").GetMap(null).ContainsKey("Motions"))
@@ -175,11 +184,13 @@ namespace Live2D.Cubism.Framework.Json
         [SerializeField]
         public int Version;
 
+
         /// <summary>
-        /// The file references.
+        /// The file references. -- 一个 struct, 存储 .model3.json 文件中 "FileReferences" 字段内的 数据
         /// </summary>
         [SerializeField]
         public SerializableFileReferences FileReferences;
+
 
         /// <summary>
         /// Groups.
@@ -364,10 +375,13 @@ namespace Live2D.Cubism.Framework.Json
         /// <param name="pickTexture">The texture mapper to use.</param>
         /// <param name="shouldImportAsOriginalWorkflow">Should import as original workflow.</param>
         /// <returns>The instantiated <see cref="CubismModel">model</see> on success; <see langword="null"/> otherwise.</returns>
-        public CubismModel ToModel(MaterialPicker pickMaterial, TexturePicker pickTexture, bool shouldImportAsOriginalWorkflow = false)
+        public CubismModel ToModel( MaterialPicker pickMaterial,    // 委托函数
+                                    TexturePicker pickTexture,      // 委托函数
+                                    bool shouldImportAsOriginalWorkflow = false
+        )
         {
-            // Initialize model source and instantiate it.
-            var mocAsBytes = Moc3;
+            // Initialize model source and instantiate it.   
+            var mocAsBytes = Moc3; // .model3.json 中的 "FileReferences"."Moc", 它指向一个 .moc3 文件的相对path "Koharu.moc3",
 
 
             if (mocAsBytes == null)

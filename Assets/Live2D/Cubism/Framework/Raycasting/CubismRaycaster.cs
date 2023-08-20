@@ -29,6 +29,9 @@ namespace Live2D.Cubism.Framework.Raycasting
         private CubismRenderer[] Raycastables { get; set; } // 绑定了 CubismRaycastable 的 CubismRenderer 组件
         private CubismRaycastablePrecision[] RaycastablePrecisions { get; set; } // 绑定了 CubismRaycastable 的 CubismRaycastablePrecision 组件
 
+        //CubismRenderer[] Raycastables = null;
+        //CubismRaycastablePrecision[] RaycastablePrecisions = null;
+
 
 
         /// <summary>
@@ -45,6 +48,8 @@ namespace Live2D.Cubism.Framework.Raycasting
             // Find raycastable drawables.
             var raycastables = new List<CubismRenderer>();
             var raycastablePrecisions = new List<CubismRaycastablePrecision>();
+
+            print("koko Refresh candidates.Length = " + candidates.Length );
 
 
             for (var i = 0; i < candidates.Length; i++)
@@ -64,6 +69,9 @@ namespace Live2D.Cubism.Framework.Raycasting
             // Cache raycastables.
             Raycastables = raycastables.ToArray();
             RaycastablePrecisions = raycastablePrecisions.ToArray();
+
+            print("koko -1- Raycastables = " + (Raycastables!=null));
+            print("koko -2- Raycastables.Length = " + Raycastables.Length );
         }
 
         #region Unity Event Handling
@@ -126,6 +134,8 @@ namespace Live2D.Cubism.Framework.Raycasting
             // Cast against each raycastable.
             var hitCount = 0;
 
+            print("koko Raycastables = " + (Raycastables!=null));
+            print("koko Raycastables.Length = " + Raycastables.Length );
 
             for (var i = 0; i < Raycastables.Length; i++)
             {

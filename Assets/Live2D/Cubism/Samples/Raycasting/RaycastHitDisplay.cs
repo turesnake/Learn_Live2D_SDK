@@ -100,7 +100,7 @@ namespace Live2D.Cubism.Samples.Raycasting
         /// </summary>
         private void Start()
         {
-            Raycaster = Model.GetComponent<CubismRaycaster>();
+            //Raycaster = Model.GetComponent<CubismRaycaster>();
             Results = new CubismRaycastHit[4]; 
 
 
@@ -112,14 +112,13 @@ namespace Live2D.Cubism.Samples.Raycasting
         /// </summary>
         private void Update()
         {
-            // Return early in case of no user interaction.
-            if (!Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                return;
+                Raycaster = Model.GetComponent<CubismRaycaster>();
+                DoRaycast();
             }
 
-
-            DoRaycast();
+            
         }
 
 
