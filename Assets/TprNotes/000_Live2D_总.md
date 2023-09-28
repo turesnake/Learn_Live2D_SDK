@@ -112,6 +112,31 @@ https://docs.live2d.com/en/cubism-sdk-tutorials/initializemodel/
 
 
 
+# ------------------------------------- #
+#         如何 点击角色
+# ------------------------------------- #
+
+官方案例: Raycasting
+
+# prefab 的 Drawables 目录下, 对需要的 组件绑定 CubismRaycastable
+    注意, 只需要交互的组件绑定即可;
+    绑定的数据不易太多; 会影响性能
+    ---
+
+# 注意:
+    当 raycast 命中一个 面片后,
+    
+     CubismRaycastHit.WorldPosition 并不是这个面片的 pos,  而仅仅是我们手指点击的 pos;
+    
+
+
+
+
+
+
+
+
+
 
 
 # ------------------------------------------- #
@@ -133,10 +158,7 @@ https://docs.live2d.com/en/cubism-sdk-tutorials/sortrendering/
 
 
 
-# ------------------------------ #
-#  如何 点击角色
 
-官方案例: Raycasting
 
 
 

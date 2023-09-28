@@ -23,17 +23,17 @@ namespace Live2D.Cubism.Framework.Raycasting
         public CubismDrawable Drawable;
 
         /// <summary>
-        /// The distance the ray traveled until it hit the <see cref="CubismDrawable"/>.
+        /// The distance the ray traveled until it hit the <see cref="CubismDrawable"/>.  玩家点击点 到 面片平面的 距离,  没啥软用
         /// </summary>
         public float Distance;
 
         /// <summary>
-        /// The hit position local to the <see cref="CubismDrawable"/>.
+        /// The hit position local to the <see cref="CubismDrawable"/>.   -  仅仅是 玩家点击的 pos,  不是这个 面片的 pos....
         /// </summary>
         public Vector3 LocalPosition;
 
         /// <summary>
-        /// The hit position in world coordinates.
+        /// The hit position in world coordinates.  --  仅仅是 玩家点击的 pos,  不是这个 面片的 pos....
         /// </summary>
         public Vector3 WorldPosition;
     }
